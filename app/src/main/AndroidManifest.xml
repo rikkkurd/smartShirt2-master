@@ -56,7 +56,9 @@ limitations under the License.
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DeviceControlActivity" />
+        <activity android:name=".DeviceControlActivity"
+            android:launchMode="singleInstance"
+            />
 
         <service
             android:name=".BluetoothLeService"
@@ -64,11 +66,14 @@ limitations under the License.
 
         <activity
             android:name=".userActivity"
-            android:label="@string/title_activity_user" >
+            android:label="@string/title_activity_user"
+            android:launchMode="singleInstance">
+
         </activity>
         <activity
             android:name=".userOverview"
-            android:label="@string/title_activity_user_overview" >
+            android:label="@string/title_activity_user_overview"
+            android:launchMode="singleInstance">
         </activity>
     </application>
 

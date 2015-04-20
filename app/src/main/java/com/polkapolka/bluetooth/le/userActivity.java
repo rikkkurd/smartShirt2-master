@@ -91,6 +91,10 @@ public class userActivity extends Activity {
                 }
                 Intent GoBackToHome = new Intent(userActivity.this,DeviceControlActivity.class);
                 startActivity(GoBackToHome);
+
+                //setResult(RESULT_OK);
+                //finish();
+
             }
         });
     }

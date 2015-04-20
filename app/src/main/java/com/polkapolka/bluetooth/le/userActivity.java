@@ -1,6 +1,7 @@
 package com.polkapolka.bluetooth.le;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -60,12 +61,13 @@ public class userActivity extends Activity {
                     activityCounterBed++;
                     System.out.print("Bed");
                     System.out.println(activityCounterBed);
-             
+
                 }
                 if (String.valueOf(adapterView.getItemAtPosition(position)).equalsIgnoreCase("Working at a desk")) {
                     activityCounterDesk++;
                     System.out.print("Desk");
                     System.out.println(activityCounterDesk);
+
                 }
                 if (String.valueOf(adapterView.getItemAtPosition(position)).equalsIgnoreCase("Walking")) {
                     activityCounterWalking++;
@@ -87,6 +89,8 @@ public class userActivity extends Activity {
                     System.out.print("Other");
                     System.out.println(activityCounterOther);
                 }
+                Intent GoBackToHome = new Intent(userActivity.this,DeviceControlActivity.class);
+                startActivity(GoBackToHome);
             }
         });
     }

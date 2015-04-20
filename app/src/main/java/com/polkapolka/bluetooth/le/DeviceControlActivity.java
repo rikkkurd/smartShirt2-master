@@ -17,6 +17,10 @@
 package com.polkapolka.bluetooth.le;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.content.BroadcastReceiver;
@@ -27,6 +31,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,11 +57,11 @@ public class DeviceControlActivity extends Activity {
 
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
     public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
-    private int[] RGBFrame = {0,0,0};
+    private int[] RGBFrame = {0, 0, 0};
     private TextView isSerial;
     private TextView mConnectionState;
     private TextView mDataField;
-    private SeekBar mRed,mGreen,mBlue;
+    private SeekBar mRed, mGreen, mBlue;
     private String mDeviceName;
     private String mDeviceAddress;
     //  private ExpandableListView mGattServicesList;
@@ -134,12 +139,18 @@ public class DeviceControlActivity extends Activity {
         mDataField.setText(R.string.no_data);
     }
 
+    Button showNotificationBut;
+    NotificationManager notificationManager;
+    int notifID = 33;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gatt_services_characteristics);
 
-            arduinoHandler = new ArduinoHandler();
+
+        showNotificationBut = (Button) findViewById(R.id.createNotification);
+        arduinoHandler = new ArduinoHandler();
         Button ActivityButtonUserActivity = (Button) findViewById(R.id.activityButtonUserActivity);
         ActivityButtonUserActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,10 +164,9 @@ public class DeviceControlActivity extends Activity {
                                                           @Override
                                                           public void onClick(View view) {
                                                               Intent intent = new Intent(view.getContext(), userOverview.class);
-                                                               startActivityForResult(intent, 0);
+                                                              startActivityForResult(intent, 0);
                                                           }
                                                       }
-
 
 
         );
@@ -175,9 +185,9 @@ public class DeviceControlActivity extends Activity {
         mGreen = (SeekBar) findViewById(R.id.seekRed);
         mBlue = (SeekBar) findViewById(R.id.seekRed);
 
-        readSeek(mRed,0);
-        readSeek(mGreen,1);
-        readSeek(mBlue,2);
+        readSeek(mRed, 0);
+        readSeek(mGreen, 1);
+        readSeek(mBlue, 2);
 
         getActionBar().setTitle(mDeviceName);
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -223,7 +233,7 @@ public class DeviceControlActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.menu_connect:
                 mBluetoothLeService.connect(mDeviceAddress);
                 return true;
@@ -272,7 +282,11 @@ public class DeviceControlActivity extends Activity {
                     LIST_NAME, SampleGattAttributes.lookup(uuid, unknownServiceString));
 
             // If the service exists for HM 10 Serial, say so.
-            if(SampleGattAttributes.lookup(uuid, unknownServiceString) == "HM 10 Serial") { isSerial.setText("Yes, serial :-)"); } else {  isSerial.setText("No, serial :-("); }
+            if (SampleGattAttributes.lookup(uuid, unknownServiceString) == "HM 10 Serial") {
+                isSerial.setText("Yes, serial :-)");
+            } else {
+                isSerial.setText("No, serial :-(");
+            }
             currentServiceData.put(LIST_UUID, uuid);
             gattServiceData.add(currentServiceData);
 
@@ -292,12 +306,12 @@ public class DeviceControlActivity extends Activity {
         return intentFilter;
     }
 
-    private void readSeek(SeekBar seekBar,final int pos) {
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+    private void readSeek(SeekBar seekBar, final int pos) {
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
-                RGBFrame[pos]=progress;
+                RGBFrame[pos] = progress;
             }
 
             @Override
@@ -312,16 +326,60 @@ public class DeviceControlActivity extends Activity {
             }
         });
     }
-    // on change of bars write char 
+
+    // on change of bars write char
     private void makeChange() {
         String str = RGBFrame[0] + "," + RGBFrame[1] + "," + RGBFrame[2] + "\n";
         Log.d(TAG, "Sending result=" + str);
         final byte[] tx = str.getBytes();
-        if(mConnected) {
+        if (mConnected) {
             characteristicTX.setValue(tx);
             mBluetoothLeService.writeCharacteristic(characteristicTX);
-            mBluetoothLeService.setCharacteristicNotification(characteristicRX,true);
+            mBluetoothLeService.setCharacteristicNotification(characteristicRX, true);
         }
     }
+
+    public void showNotification(View view) {
+        NotificationCompat.Builder notificationBuilder = new
+                NotificationCompat.Builder(this)
+                .setContentTitle("Bad Posture detected!")
+                .setContentText("please select the activity you are doing now")
+                .setTicker("Bad posture")
+                .setSmallIcon(R.drawable.icon);
+        // Define that we have the intention of opening MoreInfoNotification
+        Intent moreInfoIntent = new Intent(this, userActivity.class);
+
+        // Used to stack tasks across activites so we go to the proper place when back is clicked
+        TaskStackBuilder tStackBuilder = TaskStackBuilder.create(this);
+
+        // Add all parents of this activity to the stack
+        tStackBuilder.addParentStack(DeviceControlActivity.class);
+
+        // Add our new Intent to the stack
+        tStackBuilder.addNextIntent(moreInfoIntent);
+        notificationBuilder.setDefaults(Notification.DEFAULT_VIBRATE);
+        notificationBuilder.setAutoCancel(true);
+
+
+        // Define an Intent and an action to perform with it by another application
+        // FLAG_UPDATE_CURRENT : If the intent exists keep it but update it if needed
+        PendingIntent pendingIntent = tStackBuilder.getPendingIntent(0,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+        // Defines the Intent to fire when the notification is clicked
+
+        notificationBuilder.setContentIntent(pendingIntent);
+
+        // Gets a NotificationManager which is used to notify the user of the background event
+        notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Post the notification
+        notificationManager.notify(notifID, notificationBuilder.build());
+
+
+    }
+
+
 
 }

@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:text="@string/no_data"
             android:textSize="18sp" />
-        
+
     </LinearLayout>
      <TextView
         android:id="@+id/isSerial"
@@ -106,8 +106,19 @@
             android:layout_height="wrap_content"
             android:max="255"
             />
-
-
+    </LinearLayout>
+        <LinearLayout android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="create notification"
+                android:layout_weight="1"
+                android:id="@+id/createNotification"
+                android:onClick="showNotification"
+                />
 
     </LinearLayout>
     <ImageView

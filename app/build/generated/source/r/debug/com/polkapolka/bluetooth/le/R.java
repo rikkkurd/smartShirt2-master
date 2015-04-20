@@ -868,7 +868,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f090001;
         public static final int action_menu_presenter=0x7f090002;
         public static final int action_mode_close_button=0x7f090024;
-        public static final int action_settings=0x7f09004c;
+        public static final int action_settings=0x7f09004d;
         public static final int activityButtonUserActivity=0x7f090043;
         public static final int activityButtonUserOverview=0x7f090042;
         public static final int activity_chooser_view_content=0x7f090025;
@@ -877,10 +877,11 @@ containing a value of this type.
         public static final int checkbox=0x7f09002d;
         public static final int collapseActionView=0x7f090014;
         public static final int connection_state=0x7f09003f;
+        public static final int createNotification=0x7f090045;
         public static final int data_value=0x7f090040;
         public static final int default_activity_button=0x7f090028;
         public static final int device_address=0x7f09003e;
-        public static final int device_name=0x7f090046;
+        public static final int device_name=0x7f090047;
         public static final int dialog=0x7f090018;
         public static final int disableHome=0x7f090009;
         public static final int dropdown=0x7f090019;
@@ -888,7 +889,7 @@ containing a value of this type.
         public static final int end=0x7f090010;
         public static final int expand_activities_button=0x7f090026;
         public static final int expanded_menu=0x7f09002c;
-        public static final int gatt_services_list=0x7f090045;
+        public static final int gatt_services_list=0x7f090046;
         public static final int graph=0x7f09003d;
         public static final int home=0x7f090003;
         public static final int homeAsUp=0x7f09000a;
@@ -898,11 +899,11 @@ containing a value of this type.
         public static final int isSerial=0x7f090041;
         public static final int listMode=0x7f090006;
         public static final int list_item=0x7f090029;
-        public static final int menu_connect=0x7f090048;
-        public static final int menu_disconnect=0x7f090049;
-        public static final int menu_refresh=0x7f090047;
-        public static final int menu_scan=0x7f09004a;
-        public static final int menu_stop=0x7f09004b;
+        public static final int menu_connect=0x7f090049;
+        public static final int menu_disconnect=0x7f09004a;
+        public static final int menu_refresh=0x7f090048;
+        public static final int menu_scan=0x7f09004b;
+        public static final int menu_stop=0x7f09004c;
         public static final int middle=0x7f090011;
         public static final int never=0x7f090016;
         public static final int none=0x7f090012;

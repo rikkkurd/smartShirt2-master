@@ -31,6 +31,9 @@ public class userActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
+
+
+
         String[] activityOptionsUser = {"Standing next to a bed", "Working at a desk",
                 "Walking", "Handling a patient", "Operating machine", "Other"};
 
@@ -57,7 +60,7 @@ public class userActivity extends Activity {
                     activityCounterBed++;
                     System.out.print("Bed");
                     System.out.println(activityCounterBed);
-                    // dataHandler.updateActivityAtmeasurement()
+             
                 }
                 if (String.valueOf(adapterView.getItemAtPosition(position)).equalsIgnoreCase("Working at a desk")) {
                     activityCounterDesk++;

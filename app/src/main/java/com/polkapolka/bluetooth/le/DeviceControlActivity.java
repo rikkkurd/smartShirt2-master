@@ -52,6 +52,13 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 
+// mind3d libraries
+//import min3d.core.Object3dContainer;
+//import min3d.core.RendererActivity;
+//import min3d.parser.IParser;
+//import min3d.parser.Parser;
+
+
 /**
  * For a given BLE device, this Activity provides the user interface to connect, display data,
  * and display GATT services and characteristics supported by the device.  The Activity
@@ -244,6 +251,8 @@ public class DeviceControlActivity extends ActionBarActivity
         if (mConnected) {
             menu.findItem(R.id.menu_connect).setVisible(false);
             menu.findItem(R.id.menu_disconnect).setVisible(true);
+            menu.findItem(R.id.menu_select_Activity).setVisible(true);
+            menu.findItem(R.id.menu_select_overview).setVisible(true);
         } else {
             menu.findItem(R.id.menu_connect).setVisible(true);
             menu.findItem(R.id.menu_disconnect).setVisible(false);
@@ -262,6 +271,20 @@ public class DeviceControlActivity extends ActionBarActivity
             case R.id.menu_disconnect:
                 mBluetoothLeService.disconnect();
                 return true;
+            case R.id.menu_select_Activity:
+                Intent intent = new Intent(this, userActivity.class);
+                startActivityForResult(intent, 0);
+                return true;
+            case R.id.menu_select_overview:
+                Intent intent2 = new Intent(this, userOverview.class);
+                startActivityForResult(intent2, 0);
+                return true;
+            case R.id.menu_select_notification:
+                showNotificationInMenu();
+                return true;
+
+
+
             case android.R.id.home:
                 onBackPressed();
                 return true;
@@ -361,6 +384,50 @@ public class DeviceControlActivity extends ActionBarActivity
         }
     }
 
+
+    //shownotification in menu function
+    public void showNotificationInMenu() {
+        NotificationCompat.Builder notificationBuilder = new
+                NotificationCompat.Builder(this)
+                .setContentTitle("Bad Posture detected!")
+                .setContentText("please select the activity you are doing now")
+                .setTicker("Bad posture")
+                .setSmallIcon(R.drawable.icon);
+        // Define that we have the intention of opening MoreInfoNotification
+        Intent moreInfoIntent = new Intent(this, userActivity.class);
+
+        // Used to stack tasks across activites so we go to the proper place when back is clicked
+        TaskStackBuilder tStackBuilder = TaskStackBuilder.create(this);
+
+        // Add all parents of this activity to the stack
+        tStackBuilder.addParentStack(DeviceControlActivity.class);
+
+        // Add our new Intent to the stack
+        tStackBuilder.addNextIntent(moreInfoIntent);
+        notificationBuilder.setDefaults(Notification.DEFAULT_VIBRATE);
+        notificationBuilder.setAutoCancel(true);
+
+
+        // Define an Intent and an action to perform with it by another application
+        // FLAG_UPDATE_CURRENT : If the intent exists keep it but update it if needed
+        PendingIntent pendingIntent = tStackBuilder.getPendingIntent(0,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+        // Defines the Intent to fire when the notification is clicked
+
+        notificationBuilder.setContentIntent(pendingIntent);
+
+        // Gets a NotificationManager which is used to notify the user of the background event
+        notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Post the notification
+        notificationManager.notify(notifID, notificationBuilder.build());
+
+
+    }
+
+    //show notification button function
     public void showNotification(View view) {
         NotificationCompat.Builder notificationBuilder = new
                 NotificationCompat.Builder(this)
@@ -413,4 +480,34 @@ public class DeviceControlActivity extends ActionBarActivity
     public void onBackPressed() {
         // do nothing. We want to force user to stay in this activity and not drop out.
     }
+
+
+
+
+    /**
+     * How to load a model from a .obj file
+     *
+     * @author dennis.ippel
+     *
+     */
+//    public class ExampleLoadObjFile extends RendererActivity {
+//        private Object3dContainer objModel;
+//
+//        @Override
+//        public void initScene() {
+//            IParser parser = Parser.createParser(Parser.Type.OBJ,
+//                    getResources(), "com.polkapolka.bluetooth.le/res/raw/vertebra_obj");
+//            parser.parse();
+//
+//            objModel = parser.getParsedObject();
+//            objModel.scale().x = objModel.scale().y = objModel.scale().z = .7f;
+//            scene.addChild(objModel);
+//        }
+//
+//        @Override
+//        public void updateScene() {
+//            objModel.rotation().x++;
+//            objModel.rotation().z++;
+//        }
+//    }
 }

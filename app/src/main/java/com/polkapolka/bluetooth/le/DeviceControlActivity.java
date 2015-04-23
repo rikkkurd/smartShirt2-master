@@ -409,5 +409,8 @@ public class DeviceControlActivity extends ActionBarActivity
         Toast.makeText(this, "Menu item selected -> " + position, Toast.LENGTH_SHORT).show();
     }
 
-
+    @Override
+    public void onBackPressed() {
+        // do nothing. We want to force user to stay in this activity and not drop out.
+    }
 }

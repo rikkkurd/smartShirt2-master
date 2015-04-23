@@ -44,7 +44,6 @@
     <string name="title_activity_useractivity">useractivity</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="what_were_user_doing">What were you doing, while a bad posture was measured?</string>
     <string name="see_overview_button_text">see overview</string>
     <string name="select_activity_button_text">select activity</string>
@@ -58,4 +57,8 @@
     <string name="activity_patient">Handling a patient</string>
     <string name="activity_machine">Operating machine</string>
     <string name="activity_other">Other</string>
+
+    <string name="drawer_open">Menu opened</string>
+    <string name="drawer_close">Menu closed</string>
+    <string name="action_settings">Settings</string>
 </resources>

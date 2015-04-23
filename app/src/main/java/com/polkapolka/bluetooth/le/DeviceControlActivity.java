@@ -32,19 +32,25 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
+
+import android.support.v7.app.ActionBarActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
-import android.widget.SeekBar;
 
 /**
  * For a given BLE device, this Activity provides the user interface to connect, display data,
@@ -52,7 +58,8 @@ import android.widget.SeekBar;
  * communicates with {@code BluetoothLeService}, which in turn interacts with the
  * Bluetooth LE API.
  */
-public class DeviceControlActivity extends Activity {
+public class DeviceControlActivity extends ActionBarActivity
+        implements NavigationDrawerCallbacks {
     private final static String TAG = DeviceControlActivity.class.getSimpleName();
 
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
@@ -70,7 +77,8 @@ public class DeviceControlActivity extends Activity {
     private BluetoothGattCharacteristic characteristicTX;
     private BluetoothGattCharacteristic characteristicRX;
     private ArduinoHandler arduinoHandler;
-
+    private NavigationDrawerFragment mNavigationDrawerFragment;
+    private Toolbar mToolbar;
 
     public final static UUID HM_RX_TX =
             UUID.fromString(SampleGattAttributes.HM_RX_TX);
@@ -80,6 +88,10 @@ public class DeviceControlActivity extends Activity {
 
     // Code to manage Service lifecycle.
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
+        /**
+         * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
+         */
+
 
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder service) {
@@ -147,6 +159,14 @@ public class DeviceControlActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gatt_services_characteristics);
+//        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+//        setSupportActionBar(mToolbar);
+
+//        mNavigationDrawerFragment = (NavigationDrawerFragment)
+//                getFragmentManager().findFragmentById(R.id.fragment_drawer);
+//
+//        // Set up the drawer.
+//        mNavigationDrawerFragment.setup(R.id.fragment_drawer, (DrawerLayout) findViewById(R.id.drawer), mToolbar);
 
 
         showNotificationBut = (Button) findViewById(R.id.createNotification);
@@ -189,8 +209,8 @@ public class DeviceControlActivity extends Activity {
         readSeek(mGreen, 1);
         readSeek(mBlue, 2);
 
-        getActionBar().setTitle(mDeviceName);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+//        getActionBar().setTitle(mDeviceName);
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
     }
@@ -229,6 +249,8 @@ public class DeviceControlActivity extends Activity {
             menu.findItem(R.id.menu_disconnect).setVisible(false);
         }
         return true;
+
+
     }
 
     @Override
@@ -380,6 +402,12 @@ public class DeviceControlActivity extends Activity {
 
     }
 
+
+    @Override
+    public void onNavigationDrawerItemSelected(int position) {
+        // update the main content by replacing fragments
+        Toast.makeText(this, "Menu item selected -> " + position, Toast.LENGTH_SHORT).show();
+    }
 
 
 }

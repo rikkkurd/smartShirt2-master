@@ -48,7 +48,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 
@@ -71,6 +70,7 @@ public class DeviceControlActivity extends ActionBarActivity
 
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
     public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
+    public static final int NOTIFICATION_DELAY = 5 * 60000;
     private int[] RGBFrame = {0, 0, 0};
     private TextView isSerial;
     private TextView mConnectionState;
@@ -84,6 +84,7 @@ public class DeviceControlActivity extends ActionBarActivity
     private BluetoothGattCharacteristic characteristicTX;
     private BluetoothGattCharacteristic characteristicRX;
     private ArduinoHandler arduinoHandler;
+    private long lastNotificationTime = 0;
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private Toolbar mToolbar;
 
@@ -166,9 +167,9 @@ public class DeviceControlActivity extends ActionBarActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gatt_services_characteristics);
-//        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+//       mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
 //        setSupportActionBar(mToolbar);
-
+//
 //        mNavigationDrawerFragment = (NavigationDrawerFragment)
 //                getFragmentManager().findFragmentById(R.id.fragment_drawer);
 //
@@ -177,7 +178,7 @@ public class DeviceControlActivity extends ActionBarActivity
 
 
         showNotificationBut = (Button) findViewById(R.id.createNotification);
-        arduinoHandler = new ArduinoHandler();
+        arduinoHandler = new ArduinoHandler(this);
         Button ActivityButtonUserActivity = (Button) findViewById(R.id.activityButtonUserActivity);
         ActivityButtonUserActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -284,7 +285,6 @@ public class DeviceControlActivity extends ActionBarActivity
                 return true;
 
 
-
             case android.R.id.home:
                 onBackPressed();
                 return true;
@@ -368,6 +368,7 @@ public class DeviceControlActivity extends ActionBarActivity
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // TODO Auto-generated method stub
                 makeChange();
+
             }
         });
     }
@@ -387,6 +388,17 @@ public class DeviceControlActivity extends ActionBarActivity
 
     //shownotification in menu function
     public void showNotificationInMenu() {
+
+        // variables
+        long currentTime = System.currentTimeMillis();
+
+        // guard: check if we should wait
+        if (currentTime - lastNotificationTime < NOTIFICATION_DELAY) {
+            return;
+        }
+
+        lastNotificationTime = currentTime;
+
         NotificationCompat.Builder notificationBuilder = new
                 NotificationCompat.Builder(this)
                 .setContentTitle("Bad Posture detected!")
@@ -480,34 +492,7 @@ public class DeviceControlActivity extends ActionBarActivity
     public void onBackPressed() {
         // do nothing. We want to force user to stay in this activity and not drop out.
     }
-
-
-
-
-    /**
-     * How to load a model from a .obj file
-     *
-     * @author dennis.ippel
-     *
-     */
-//    public class ExampleLoadObjFile extends RendererActivity {
-//        private Object3dContainer objModel;
-//
-//        @Override
-//        public void initScene() {
-//            IParser parser = Parser.createParser(Parser.Type.OBJ,
-//                    getResources(), "com.polkapolka.bluetooth.le/res/raw/vertebra_obj");
-//            parser.parse();
-//
-//            objModel = parser.getParsedObject();
-//            objModel.scale().x = objModel.scale().y = objModel.scale().z = .7f;
-//            scene.addChild(objModel);
-//        }
-//
-//        @Override
-//        public void updateScene() {
-//            objModel.rotation().x++;
-//            objModel.rotation().z++;
-//        }
-//    }
 }
+
+
+

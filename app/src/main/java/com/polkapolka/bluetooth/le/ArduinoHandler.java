@@ -13,12 +13,37 @@ public class ArduinoHandler {
      */
     private final static int SENSOR_ONE_PACKET_ID = 0;
     private final static int SENSOR_TWO_PACKET_ID = 1;
+    private final static int BAD_PITCH_THRESHOLD = 50;
+    private final static int BAD_PITCH_TIME = 3000;
+
+    /**
+     * Object references
+     */
+    private final DeviceControlActivity deviceControlActivity;
+
+    /**
+     * Pitch listener
+     */
+    private long lastBadPitchTime = 0;
+    private boolean pitchNotificationShown = false;
+
+    /**
+     * Sensor variables
+     */
+    private int roll1 = 0;
+    private int heading1 = 0;
+    private int pitch1 = 0;
+    private int roll2 = 0;
+    private int heading2 = 0;
+    private int pitch2 = 0;
 
     /**
      * Constructor
      */
-    public ArduinoHandler() {
+    public ArduinoHandler(DeviceControlActivity deviceControlActivity) {
 
+        // variables
+        this.deviceControlActivity = deviceControlActivity;
     }
 
     /**
@@ -26,7 +51,7 @@ public class ArduinoHandler {
      *
      * @param intent
      */
-    public static void handleArduinoBytes(Intent intent) {
+    public void handleArduinoBytes(Intent intent) {
 
         // guard: check if the bytes are available
         if (!intent.hasExtra(BluetoothLeService.EXTRA_DATA)) {
@@ -52,7 +77,7 @@ public class ArduinoHandler {
 
         // guard: check if lenght is valid
         if (intArr.length != 4) {
-                return;
+            return;
         }
 
         // get the packet id
@@ -62,20 +87,62 @@ public class ArduinoHandler {
         switch (packetId) {
             case SENSOR_ONE_PACKET_ID:
 
-                int roll1 = intArr[1];
-                int pitch1 = intArr[2];
-                int heading1 = intArr[3];
+                roll1 = intArr[1];
+                pitch1 = intArr[2];
+                heading1 = intArr[3];
 
                 System.out.println("[DATA SENSOR ONE]: " + roll1 + ", " + pitch1 + ", " + heading1);
                 break;
 
             case SENSOR_TWO_PACKET_ID:
-                int roll2 = intArr[1];
-                int pitch2 = intArr[2];
-                int heading2 = intArr[3];
+                roll2 = intArr[1];
+                pitch2 = intArr[2];
+                heading2 = intArr[3];
                 System.out.println("[DATA SENSOR TWO]: " + roll2 + ", " + pitch2 + ", " + heading2);
                 break;
+        }
 
+        // check the pitch posture
+        checkPitchPosture();
+    }
+
+    /**
+     * Check the pitch posture
+     */
+    private void checkPitchPosture() {
+
+        // variables
+        int deltaPitch = pitch1;
+        //int deltaPitch = pitch1 - pitch2;
+
+        // guard: check if the threshold is exceeded
+        if (deltaPitch <= BAD_PITCH_THRESHOLD) {
+            lastBadPitchTime = 0;
+            pitchNotificationShown = false;
+            return;
+        }
+
+        // variables
+        long currentMillis = System.currentTimeMillis();
+
+        // guard: check if the timer is already set
+        if (lastBadPitchTime <=  0) {
+            System.out.println("Set last bad pitch time!");
+            lastBadPitchTime = currentMillis;
+            return;
+        }
+
+        // check if the timer is exceeded and the user needs a warning
+        if (currentMillis - lastBadPitchTime > BAD_PITCH_TIME && !pitchNotificationShown) {
+
+            // show notification
+            System.out.println("Notification shown!");
+            deviceControlActivity.showNotificationInMenu();
+            pitchNotificationShown = true;
         }
     }
+
+
+
 }
+

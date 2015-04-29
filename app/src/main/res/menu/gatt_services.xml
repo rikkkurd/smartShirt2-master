@@ -30,7 +30,6 @@
     <item android:id="@+id/menu_select_overview"
         android:title="@string/see_overview_button_text"
         android:orderInCategory="101"
-        android:titleCondensed="@string/Back"
         app:showAsAction="ifRoom|withText"/>
     <item android:id="@+id/menu_select_notification"
         android:title="@string/Select_create_notification"

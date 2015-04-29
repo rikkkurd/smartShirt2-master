@@ -47,8 +47,8 @@
     <string name="see_overview_button_text">Dagelijks overzicht</string>
     <string name="select_activity_button_text">Selecteer activiteit</string>
     <string name="button_initialize_app">start de data connectie met het shirt</string>
-    <string name="title_activity_user">userActivity</string>
-    <string name="title_activity_user_overview">userOverview</string>
+    <string name="title_activity_user">Activiteiten</string>
+    <string name="title_activity_user_overview">Dagelijks overzicht</string>
 
     <string name="activity_bed">Aan het bed werken</string>
     <string name="activity_desk">Aan een bureau werken</string>

@@ -48,8 +48,8 @@
     <string name="see_overview_button_text">see overview</string>
     <string name="select_activity_button_text">select activity</string>
     <string name="button_initialize_app">initialize app</string>
-    <string name="title_activity_user">userActivity</string>
-    <string name="title_activity_user_overview">userOverview</string>
+    <string name="title_activity_user">Select activity</string>
+    <string name="title_activity_user_overview">Daily overview</string>
 
     <string name="activity_bed">Standing next to a bed</string>
     <string name="activity_desk">Working at a desk</string>

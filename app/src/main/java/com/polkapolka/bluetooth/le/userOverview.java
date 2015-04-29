@@ -1,8 +1,11 @@
 package com.polkapolka.bluetooth.le;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,12 +16,13 @@ import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
 
-public class userOverview extends Activity {
+public class userOverview extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_overview);
+
 
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
@@ -73,6 +77,8 @@ graph.addSeries(series);
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, DeviceControlActivity.class);
+            startActivityForResult(intent, 0);
             return true;
         }
 

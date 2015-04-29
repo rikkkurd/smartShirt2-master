@@ -3,6 +3,7 @@ package com.polkapolka.bluetooth.le;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class userActivity extends Activity {
+public class userActivity extends ActionBarActivity {
 
 
 
@@ -111,9 +112,12 @@ public class userActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent intent = new Intent(this, DeviceControlActivity.class);
+                startActivityForResult(intent, 0);
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);

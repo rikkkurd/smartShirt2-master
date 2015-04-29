@@ -63,6 +63,7 @@ import java.util.UUID;
  */
 public class DeviceControlActivity extends ActionBarActivity
         implements NavigationDrawerCallbacks {
+
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
     public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
     public static final int NOTIFICATION_DELAY = 5 * 60000;

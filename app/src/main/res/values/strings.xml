@@ -84,4 +84,5 @@
     <string name="NotificationTicker">Bad posture</string>
     <string name="YouSelectedToast">"You selected "</string>
     <string name="NoActivityDataYet">No ativity Data available yet, Use the smart shirt first, and come back here after one day of use</string>
+    <string name="Back">"Back"</string>
 </resources>

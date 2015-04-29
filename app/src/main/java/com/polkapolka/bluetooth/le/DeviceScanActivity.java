@@ -35,6 +35,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.app.ActionBarActivity;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -56,7 +57,7 @@ public class DeviceScanActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      // getActionBar().setTitle(R.string.title_devices);
+      //getActionBar().setTitle("smart shirt app");
         mHandler = new Handler();
 
         // Use this check to determine whether BLE is supported on the device.  Then you can

@@ -87,4 +87,5 @@
     <string name="BadPostureTicker">Slechte houding</string>
     <string name="SelectActivityNotificationText">Geef je huidige activiteit aan</string>
     <string name="NoActivityDataYet">Geen data beschikbaar op dit moment, gebruik het shirt gedurende de dag en kom later op de dag terug om het overzicht te bekijken</string>
+    <string name="Back">"Terug"</string>
 </resources>

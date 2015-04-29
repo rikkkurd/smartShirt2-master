@@ -16,7 +16,6 @@
 
 package com.polkapolka.bluetooth.le;
 
-import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -32,7 +31,8 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,15 +40,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.support.v7.widget.Toolbar;
-
-import android.support.v7.app.ActionBarActivity;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-import android.widget.Toast;
 
 
 // mind3d libraries
@@ -66,11 +63,17 @@ import android.widget.Toast;
  */
 public class DeviceControlActivity extends ActionBarActivity
         implements NavigationDrawerCallbacks {
-    private final static String TAG = DeviceControlActivity.class.getSimpleName();
-
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
     public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
     public static final int NOTIFICATION_DELAY = 5 * 60000;
+    public final static UUID HM_RX_TX =
+            UUID.fromString(SampleGattAttributes.HM_RX_TX);
+    private final static String TAG = DeviceControlActivity.class.getSimpleName();
+    private final String LIST_NAME = "NAME";
+    private final String LIST_UUID = "UUID";
+    Button showNotificationBut;
+    NotificationManager notificationManager;
+    int notifID = 33;
     private int[] RGBFrame = {0, 0, 0};
     private TextView isSerial;
     private TextView mConnectionState;
@@ -80,20 +83,6 @@ public class DeviceControlActivity extends ActionBarActivity
     private String mDeviceAddress;
     //  private ExpandableListView mGattServicesList;
     private BluetoothLeService mBluetoothLeService;
-    private boolean mConnected = false;
-    private BluetoothGattCharacteristic characteristicTX;
-    private BluetoothGattCharacteristic characteristicRX;
-    private ArduinoHandler arduinoHandler;
-    private long lastNotificationTime = 0;
-    private NavigationDrawerFragment mNavigationDrawerFragment;
-    private Toolbar mToolbar;
-
-    public final static UUID HM_RX_TX =
-            UUID.fromString(SampleGattAttributes.HM_RX_TX);
-
-    private final String LIST_NAME = "NAME";
-    private final String LIST_UUID = "UUID";
-
     // Code to manage Service lifecycle.
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
         /**
@@ -117,7 +106,7 @@ public class DeviceControlActivity extends ActionBarActivity
             mBluetoothLeService = null;
         }
     };
-
+    private boolean mConnected = false;
     // Handles various events fired by the Service.
     // ACTION_GATT_CONNECTED: connected to a GATT server.
     // ACTION_GATT_DISCONNECTED: disconnected from a GATT server.
@@ -154,14 +143,25 @@ public class DeviceControlActivity extends ActionBarActivity
             }
         }
     };
+    private BluetoothGattCharacteristic characteristicTX;
+    private BluetoothGattCharacteristic characteristicRX;
+    private ArduinoHandler arduinoHandler;
+    private long lastNotificationTime = 0;
+    private NavigationDrawerFragment mNavigationDrawerFragment;
+    private Toolbar mToolbar;
+
+    private static IntentFilter makeGattUpdateIntentFilter() {
+        final IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(BluetoothLeService.ACTION_GATT_CONNECTED);
+        intentFilter.addAction(BluetoothLeService.ACTION_GATT_DISCONNECTED);
+        intentFilter.addAction(BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED);
+        intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
+        return intentFilter;
+    }
 
     private void clearUI() {
         mDataField.setText(R.string.no_data);
     }
-
-    Button showNotificationBut;
-    NotificationManager notificationManager;
-    int notifID = 33;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -177,16 +177,16 @@ public class DeviceControlActivity extends ActionBarActivity
 //        mNavigationDrawerFragment.setup(R.id.fragment_drawer, (DrawerLayout) findViewById(R.id.drawer), mToolbar);
 
 
-        showNotificationBut = (Button) findViewById(R.id.createNotification);
+        //   showNotificationBut = (Button) findViewById(R.id.createNotification);
         arduinoHandler = new ArduinoHandler(this);
-        Button ActivityButtonUserActivity = (Button) findViewById(R.id.activityButtonUserActivity);
-        ActivityButtonUserActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), userActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
+        //    Button ActivityButtonUserActivity = (Button) findViewById(R.id.activityButtonUserActivity);
+//        ActivityButtonUserActivity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(view.getContext(), userActivity.class);
+//                startActivityForResult(intent, 0);
+//            }
+//        });
         Button ActivityButtonUserOverview = (Button) findViewById(R.id.activityButtonUserOverview);
         ActivityButtonUserOverview.setOnClickListener(new View.OnClickListener() {
                                                           @Override
@@ -198,6 +198,8 @@ public class DeviceControlActivity extends ActionBarActivity
 
 
         );
+
+
         final Intent intent = getIntent();
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
         mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
@@ -308,7 +310,6 @@ public class DeviceControlActivity extends ActionBarActivity
         }
     }
 
-
     // Demonstrates how to iterate through the supported GATT Services/Characteristics.
     // In this sample, we populate the data structure that is bound to the ExpandableListView
     // on the UI.
@@ -340,15 +341,6 @@ public class DeviceControlActivity extends ActionBarActivity
             characteristicRX = gattService.getCharacteristic(BluetoothLeService.UUID_HM_RX_TX);
         }
 
-    }
-
-    private static IntentFilter makeGattUpdateIntentFilter() {
-        final IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(BluetoothLeService.ACTION_GATT_CONNECTED);
-        intentFilter.addAction(BluetoothLeService.ACTION_GATT_DISCONNECTED);
-        intentFilter.addAction(BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED);
-        intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
-        return intentFilter;
     }
 
     private void readSeek(SeekBar seekBar, final int pos) {
@@ -401,9 +393,9 @@ public class DeviceControlActivity extends ActionBarActivity
 
         NotificationCompat.Builder notificationBuilder = new
                 NotificationCompat.Builder(this)
-                .setContentTitle("Bad Posture detected!")
-                .setContentText("please select the activity you are doing now")
-                .setTicker("Bad posture")
+                .setContentTitle(getString(R.string.NotifationTitle))
+                .setContentText(getString(R.string.NotificationSubtitle))
+                .setTicker(getString(R.string.BadPostureTicker))
                 .setSmallIcon(R.drawable.icon);
         // Define that we have the intention of opening MoreInfoNotification
         Intent moreInfoIntent = new Intent(this, userActivity.class);
@@ -443,9 +435,9 @@ public class DeviceControlActivity extends ActionBarActivity
     public void showNotification(View view) {
         NotificationCompat.Builder notificationBuilder = new
                 NotificationCompat.Builder(this)
-                .setContentTitle("Bad Posture detected!")
-                .setContentText("please select the activity you are doing now")
-                .setTicker("Bad posture")
+                .setContentTitle(getString(R.string.NotifationTitle))
+                .setContentText(getString(R.string.NotificationSubtitle))
+                .setTicker(getString(R.string.NotificationTicker))
                 .setSmallIcon(R.drawable.icon);
         // Define that we have the intention of opening MoreInfoNotification
         Intent moreInfoIntent = new Intent(this, userActivity.class);
@@ -485,7 +477,7 @@ public class DeviceControlActivity extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        Toast.makeText(this, "Menu item selected -> " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.MenuItemSelectedToastMessage) + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override

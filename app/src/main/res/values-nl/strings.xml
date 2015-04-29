@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2013 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="app_name">Smart shirt app</string>
+    <string name="ble_not_supported">BLE wordt niet ondersteund</string>
+    <string name="label_data">Data:</string>
+    <string name="label_device_address">apparaat ID</string>
+    <string name="label_state">Status:</string>
+    <string name="no_data">Geen data beschikbaar</string>
+    <string name="connected">Verbonden</string>
+    <string name="disconnected">Ontkoppeld</string>
+    <string name="title_devices">Op zoek naar Smart shirt HMSoft</string>
+    <string name="error_bluetooth_not_supported">Bluetooth niet ondersteund</string>
+
+    <string name="unknown_device">Onbekend apparaat</string>
+    <string name="unknown_characteristic">Onbekende karakteristieken</string>
+    <string name="unknown_service">Onbekende service</string>
+
+    <!-- Menu items -->
+    <string name="menu_connect">Verbind met Smart shirt</string>
+    <string name="menu_disconnect">Ontkoppel Smart shirt</string>
+    <string name="menu_scan">Scan naar shirts</string>
+    <string name="menu_stop">Stop</string>
+    <string name="is_serial">Seriele data:</string>
+    <string-array name="roygbiv">
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+    </string-array>
+    <string name="what_activity">Waarmee bent u nu bezig?</string>
+    <string name="title_activity_useractivity">useractivity</string>
+
+    <string name="hello_world">Hallo!</string>
+    <string name="what_were_user_doing">Wat deed u op het moment dat de verkeerde houding werd gemeten?</string>
+    <string name="see_overview_button_text">Dagelijks overzicht</string>
+    <string name="select_activity_button_text">Selecteer activiteit</string>
+    <string name="button_initialize_app">start de data connectie met het shirt</string>
+    <string name="title_activity_user">userActivity</string>
+    <string name="title_activity_user_overview">userOverview</string>
+
+    <string name="activity_bed">Aan het bed werken</string>
+    <string name="activity_desk">Aan een bureau werken</string>
+    <string name="activity_walking">Lopen</string>
+    <string name="activity_patient">Patient begeleiden/tillen</string>
+    <string name="activity_machine">Bezig met apparatuur bediening</string>
+    <string name="activity_other">Overige</string>
+
+    <string name="drawer_open">Menu opened</string>
+    <string name="drawer_close">Menu closed</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="Select_create_notification">Forceer notificatie</string>
+    <string name="badPostureDetected">Verkeerde lage rug houding gedetecteerd!</string>
+    <string name="Bed">Bed</string>
+    <string name="Desk">Buro</string>
+    <string name="Walking">Lopen</string>
+    <string name="Patient">Patient</string>
+    <string name="Machine">Machine</string>
+    <string name="Other">Overige</string>
+    <string name="Activityoverviewtopheadertext">Overzicht van de activiteiten van vandaag die tot lage rugpijn kunnen leiden:</string>
+
+    <!--if you want to change these values below go to userActivity.java as well and change the corrosponding texts as well-->
+
+    <string name="ActivityOptionsUserBed">Aan het bed werken</string>
+    <string name="ActivityOptionsUserDesk">Aan een bureau werken</string>
+    <string name="ActivityOptionsUserWalking">Lopen</string>
+    <string name="ActivityOptionsUserpatient">Patient begeleiden/tillen</string>
+    <string name="ActivityOptionsUserMachine">Bezig met de bediening van apparatuur</string>
+    <string name="ActivityOptionsUserOther">Overige</string>
+
+    <!--Notification texts-->
+    <string name="NotifationTitle">Verkeerde lage rug houding gedetecteerd!</string>
+    <string name="NotificationSubtitle">Geef je huidige activiteit aan</string>
+    <string name="NotificationTicker">Verkeerde houding</string>
+    <string name="YouSelectedToast">"U koos: "</string>
+    <string name="BadPostureTicker">Slechte houding</string>
+    <string name="SelectActivityNotificationText">Geef je huidige activiteit aan</string>
+    <string name="NoActivityDataYet">Geen data beschikbaar op dit moment, gebruik het shirt gedurende de dag en kom later op de dag terug om het overzicht te bekijken</string>
+</resources>

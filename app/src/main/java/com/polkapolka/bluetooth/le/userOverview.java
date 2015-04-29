@@ -5,16 +5,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.DataPointInterface;
-import com.jjoe64.graphview.series.OnDataPointTapListener;
-import com.jjoe64.graphview.series.Series;
 
 
 public class userOverview extends Activity {
@@ -40,17 +36,17 @@ public class userOverview extends Activity {
                 new DataPoint(4, activityCounterPatient),
                 new DataPoint(5, activityCounterMachine),
                 new DataPoint(6, activityCounterOther),
-                new DataPoint(7,0)
+                new DataPoint(6.8, 0)
 
         });
         series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
             @Override
             public int get(DataPoint data) {
-                return Color.rgb((int) data.getX() * 255 / 4, (int) Math.abs(data.getY() * 255 / 6), 100);
+                return Color.rgb((int) data.getX() * 255 / 6, (int) Math.abs(data.getX() * 255 / 6), 100);
             }
         });
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-        staticLabelsFormatter.setHorizontalLabels(new String[] {"Bed", "Desk", "walking", "Patient", "Machine", "Other", ""});
+        staticLabelsFormatter.setHorizontalLabels(new String[]{getString(R.string.Bed), getString(R.string.Desk), getString(R.string.Walking), getString(R.string.Patient), getString(R.string.Machine), getString(R.string.Other), ""});
         graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
         series.setSpacing(25);
         series.setDrawValuesOnTop(true);

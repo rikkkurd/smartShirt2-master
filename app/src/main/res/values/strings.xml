@@ -62,4 +62,26 @@
     <string name="drawer_close">Menu closed</string>
     <string name="action_settings">Settings</string>
     <string name="Select_create_notification">Create notification</string>
+    <string name="badPostureDetected">Bad Posture detected!</string>
+    <string name="SelectActivityNotificationText">please select the activity you are doing now</string>
+    <string name="BadPostureTicker">Bad posture</string>
+    <string name="MenuItemSelectedToastMessage"><![CDATA["Menu item selected -> "]]></string>
+    <string name="Bed">Bed</string>
+    <string name="Desk">Desk</string>
+    <string name="Walking">walking</string>
+    <string name="Patient">Patient</string>
+    <string name="Machine">Machine</string>
+    <string name="Other">Other</string>
+    <string name="Activityoverviewtopheadertext">User Overview of activities that can cause lower back pain</string>
+    <string name="ActivityOptionsUserBed">Standing next to a bed</string>
+    <string name="ActivityOptionsUserDesk">Working at a desk</string>
+    <string name="ActivityOptionsUserWalking">Walking</string>
+    <string name="ActivityOptionsUserpatient">Handling a patient</string>
+    <string name="ActivityOptionsUserMachine">Operating machine</string>
+    <string name="ActivityOptionsUserOther">Other</string>
+    <string name="NotifationTitle">Bad Posture detected!</string>
+    <string name="NotificationSubtitle">please select the activity you are doing now</string>
+    <string name="NotificationTicker">Bad posture</string>
+    <string name="YouSelectedToast">"You selected "</string>
+    <string name="NoActivityDataYet">No ativity Data available yet, Use the smart shirt first, and come back here after one day of use</string>
 </resources>

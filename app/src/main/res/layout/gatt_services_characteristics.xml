@@ -19,21 +19,19 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="0dp">
+    android:layout_margin="0dp"
+    android:orientation="vertical">
 
 
-
-
-
-    <LinearLayout android:orientation="horizontal"
-                  android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
 
-        <TextView android:layout_width="wrap_content"
+    <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/label_device_address"
                   android:textSize="18sp"/>
@@ -44,11 +42,14 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"/>
     </LinearLayout>
-    <LinearLayout android:orientation="horizontal"
-                  android:layout_width="match_parent"
+
+    <LinearLayout
+        android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_margin="10dp">
-        <TextView android:layout_width="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+    <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/label_state"
                   android:textSize="18sp"/>
@@ -60,11 +61,14 @@
                   android:text="@string/disconnected"
                   android:textSize="18sp"/>
     </LinearLayout>
-    <LinearLayout android:orientation="horizontal"
-                  android:layout_width="match_parent"
+
+    <LinearLayout
+        android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_margin="10dp">
-        <TextView android:layout_width="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+    <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/label_data"
                   android:textSize="18sp"/>
@@ -88,8 +92,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_gravity="center|top">
+        android:layout_gravity="center|top"
+        android:orientation="horizontal">
 
         <!--<Button-->
             <!--android:layout_width="150dp"-->
@@ -98,19 +102,19 @@
 
 
         <Button
+            android:id="@+id/activityButtonUserOverview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/see_overview_button_text"
             android:layout_weight="1"
-            android:id="@+id/activityButtonUserOverview"/>
+            android:text="@string/see_overview_button_text" />
         />
 
-        <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/select_activity_button_text"
-        android:layout_weight="1"
-            android:id="@+id/activityButtonUserActivity"/>
+        <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/select_activity_button_text"-->
+        <!--android:layout_weight="1"-->
+        <!--android:id="@+id/activityButtonUserActivity"/>-->
         <SeekBar
             android:id="@+id/seekRed"
             android:layout_width="50dp"
@@ -118,20 +122,20 @@
             android:max="255"
             />
     </LinearLayout>
-        <LinearLayout android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="create notification"
-                android:layout_weight="1"
-                android:id="@+id/createNotification"
-                android:onClick="showNotification"
-                />
+    <!--<LinearLayout android:orientation="horizontal"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="10dp">-->
+    <!--<Button-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="create notification"-->
+    <!--android:layout_weight="1"-->
+    <!--android:id="@+id/createNotification"-->
+    <!--android:onClick="showNotification"-->
+    <!--/>-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

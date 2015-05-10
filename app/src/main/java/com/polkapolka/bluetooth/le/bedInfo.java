@@ -7,22 +7,33 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.view.View;
 
 
-public class deskInfo extends ActionBarActivity {
+public class bedInfo extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_desk_info);
+        setContentView(R.layout.activity_bed_info);
+
+        Button infoDesk = (Button) findViewById(R.id.infoDesk);
+        infoDesk.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(view.getContext(), deskInfo.class);
+                                            startActivityForResult(intent, 0);
+                                        }
+                                    }
+
+
+        );
 
         Button bodyPosture = (Button) findViewById(R.id.infoBodyPosture);
         bodyPosture.setOnClickListener(new View.OnClickListener() {
                                            @Override
-                                           public void onClick(View view) {
-                                               Intent intent = new Intent(deskInfo.this, bodyPostureInfo.class);
-                                               startActivityForResult(intent, 0);
+                                           public void onClick(View view2) {
+                                               Intent intent2 = new Intent(view2.getContext(), bodyPostureInfo.class);
+                                               startActivityForResult(intent2, 0);
                                            }
                                        }
 
@@ -31,34 +42,20 @@ public class deskInfo extends ActionBarActivity {
         Button HelpingPatient = (Button) findViewById(R.id.infoHelpingPatient);
         HelpingPatient.setOnClickListener(new View.OnClickListener() {
                                               @Override
-                                              public void onClick(View view2) {
-                                                  Intent intent2 = new Intent(view2.getContext(), helpingPatientInfo.class);
-                                                  startActivityForResult(intent2, 0);
-                                              }
-                                          }
-
-
-        );
-        Button bedPosture = (Button) findViewById(R.id.infoBedPosture);
-        bedPosture.setOnClickListener(new View.OnClickListener() {
-                                              @Override
                                               public void onClick(View view3) {
-                                                  Intent intent3 = new Intent(view3.getContext(), bedInfo.class);
+                                                  Intent intent3 = new Intent(view3.getContext(), helpingPatientInfo.class);
                                                   startActivityForResult(intent3, 0);
                                               }
                                           }
 
 
         );
-
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_desk_info, menu);
+        getMenuInflater().inflate(R.menu.menu_bed_info, menu);
         return true;
     }
 
@@ -69,17 +66,11 @@ public class deskInfo extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        switch (item.getItemId()) {
-            case R.id.back_button_to_user_overview:
-                Intent intent = new Intent(this, userOverview.class);
-                startActivityForResult(intent, 0);
-                return true;
-
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
 }

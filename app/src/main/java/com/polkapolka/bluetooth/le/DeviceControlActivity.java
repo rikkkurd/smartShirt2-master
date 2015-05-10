@@ -286,6 +286,10 @@ public class DeviceControlActivity extends ActionBarActivity
             case R.id.menu_select_notification:
                 showNotificationInMenu();
                 return true;
+            case R.id.infoTips:
+                Intent intent3 = new Intent(this, deskInfo.class);
+                startActivityForResult(intent3, 0);
+                return true;
 
 
             case android.R.id.home:

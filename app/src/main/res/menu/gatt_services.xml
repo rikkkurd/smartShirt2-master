@@ -23,6 +23,10 @@
           android:title="@string/menu_disconnect"
           android:orderInCategory="101"
           android:showAsAction="ifRoom|withText"/>
+    <item android:id="@+id/infoTips"
+        android:title="Tips"
+        android:orderInCategory="101"
+        android:showAsAction="ifRoom|withText"/>
     <item android:id="@+id/menu_select_Activity"
         android:title="@string/select_activity_button_text"
         android:orderInCategory="101"

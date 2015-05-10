@@ -79,16 +79,16 @@ limitations under the License.
             android:label="@string/title_activity_desk_info" >
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
+            android:name=".bodyPostureInfo"
+            android:label="@string/title_activity_body_posture_info" >
         </activity>
         <activity
-            android:name=".moreInfo"
-            android:label="@string/title_activity_more_info"
-            android:parentActivityName=".userOverview" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.polkapolka.bluetooth.le.userOverview" />
+            android:name=".helpingPatientInfo"
+            android:label="@string/title_activity_helping_patient_info" >
+        </activity>
+        <activity
+            android:name=".bedInfo"
+            android:label="@string/title_activity_bed_info" >
         </activity>
     </application>
 

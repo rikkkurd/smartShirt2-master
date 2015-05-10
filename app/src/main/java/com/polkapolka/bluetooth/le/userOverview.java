@@ -8,12 +8,16 @@ import android.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
+import com.jjoe64.graphview.series.OnDataPointTapListener;
+import com.jjoe64.graphview.series.Series;
 
 
 public class userOverview extends ActionBarActivity {
@@ -43,6 +47,15 @@ public class userOverview extends ActionBarActivity {
                 new DataPoint(6.8, 0)
 
         });
+
+        series.setOnDataPointTapListener(new OnDataPointTapListener() {
+            @Override
+            public void onTap(Series series, DataPointInterface dataPoint) {
+                Toast.makeText(userOverview.this, "Series1: On Data Point clicked: "+dataPoint, Toast.LENGTH_SHORT).show();
+                Intent intent= new Intent(userOverview.this, deskInfo.class);
+                startActivity(intent);
+            }
+        });
         series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
             @Override
             public int get(DataPoint data) {
@@ -56,6 +69,8 @@ public class userOverview extends ActionBarActivity {
         series.setDrawValuesOnTop(true);
         series.setValuesOnTopColor(Color.BLACK);
 graph.addSeries(series);
+
+
 
 
     }

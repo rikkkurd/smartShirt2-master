@@ -1355,17 +1355,20 @@ containing a value of this type.
         public static final int abc_textfield_search_activated_mtrl_alpha=0x7f020034;
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020035;
         public static final int abc_textfield_search_material=0x7f020036;
-        public static final int graphicalplaceholder=0x7f020037;
-        public static final int ic_launcher=0x7f020038;
-        public static final int ic_menu_check=0x7f020039;
-        public static final int ic_notification_icon=0x7f02003a;
-        public static final int ic_top_bar=0x7f02003b;
-        public static final int icon=0x7f02003c;
-        public static final int illustration=0x7f02003d;
-        public static final int pressed_gray=0x7f020040;
-        public static final int row_selector=0x7f02003e;
-        public static final int selected_gray=0x7f020041;
-        public static final int wallpaper=0x7f02003f;
+        public static final int deskapp=0x7f020037;
+        public static final int graphicalplaceholder=0x7f020038;
+        public static final int helpingpatient=0x7f020039;
+        public static final int ic_launcher=0x7f02003a;
+        public static final int ic_menu_check=0x7f02003b;
+        public static final int ic_notification_icon=0x7f02003c;
+        public static final int ic_top_bar=0x7f02003d;
+        public static final int icon=0x7f02003e;
+        public static final int illustration=0x7f02003f;
+        public static final int pressed_gray=0x7f020043;
+        public static final int row_selector=0x7f020040;
+        public static final int selected_gray=0x7f020044;
+        public static final int walking=0x7f020041;
+        public static final int wallpaper=0x7f020042;
     }
     public static final class id {
         public static final int action_bar=0x7f0a0031;
@@ -1381,10 +1384,11 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a002e;
         public static final int action_mode_bar_stub=0x7f0a002d;
         public static final int action_mode_close_button=0x7f0a0020;
-        public static final int action_settings=0x7f0a0053;
+        public static final int action_settings=0x7f0a0054;
         public static final int activityButtonUserOverview=0x7f0a0048;
         public static final int activity_chooser_view_content=0x7f0a0021;
         public static final int always=0x7f0a0016;
+        public static final int back_button_to_user_overview=0x7f0a0053;
         public static final int beginning=0x7f0a0013;
         public static final int checkbox=0x7f0a0029;
         public static final int collapseActionView=0x7f0a0017;
@@ -1482,20 +1486,22 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030014;
         public static final int abc_simple_dropdown_hint=0x7f030015;
         public static final int actionbar_indeterminate_progress=0x7f030016;
-        public static final int activity_user=0x7f030017;
-        public static final int activity_user_overview=0x7f030018;
-        public static final int drawer_row=0x7f030019;
-        public static final int fragment_navigation_drawer=0x7f03001a;
-        public static final int gatt_services_characteristics=0x7f03001b;
-        public static final int listitem_device=0x7f03001c;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
-        public static final int toolbar_default=0x7f03001e;
+        public static final int activity_desk_info=0x7f030017;
+        public static final int activity_user=0x7f030018;
+        public static final int activity_user_overview=0x7f030019;
+        public static final int drawer_row=0x7f03001a;
+        public static final int fragment_navigation_drawer=0x7f03001b;
+        public static final int gatt_services_characteristics=0x7f03001c;
+        public static final int listitem_device=0x7f03001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
+        public static final int toolbar_default=0x7f03001f;
     }
     public static final class menu {
         public static final int gatt_services=0x7f0e0000;
         public static final int main=0x7f0e0001;
-        public static final int menu_user_overview=0x7f0e0002;
-        public static final int menu_useractivity=0x7f0e0003;
+        public static final int menu_desk_info=0x7f0e0002;
+        public static final int menu_user_overview=0x7f0e0003;
+        public static final int menu_useractivity=0x7f0e0004;
     }
     public static final class raw {
         public static final int vertebra_mtl=0x7f050000;
@@ -1569,15 +1575,16 @@ containing a value of this type.
         public static final int no_data=0x7f0c0040;
         public static final int see_overview_button_text=0x7f0c0041;
         public static final int select_activity_button_text=0x7f0c0042;
-        public static final int title_activity_user=0x7f0c0043;
-        public static final int title_activity_user_overview=0x7f0c0044;
-        public static final int title_activity_useractivity=0x7f0c0045;
-        public static final int title_devices=0x7f0c0046;
-        public static final int unknown_characteristic=0x7f0c0047;
-        public static final int unknown_device=0x7f0c0048;
-        public static final int unknown_service=0x7f0c0049;
-        public static final int what_activity=0x7f0c004a;
-        public static final int what_were_user_doing=0x7f0c004b;
+        public static final int title_activity_desk_info=0x7f0c0043;
+        public static final int title_activity_user=0x7f0c0044;
+        public static final int title_activity_user_overview=0x7f0c0045;
+        public static final int title_activity_useractivity=0x7f0c0046;
+        public static final int title_devices=0x7f0c0047;
+        public static final int unknown_characteristic=0x7f0c0048;
+        public static final int unknown_device=0x7f0c0049;
+        public static final int unknown_service=0x7f0c004a;
+        public static final int what_activity=0x7f0c004b;
+        public static final int what_were_user_doing=0x7f0c004c;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0d0000;

@@ -1387,7 +1387,7 @@ containing a value of this type.
         public static final int action_mode_bar_stub=0x7f0a002d;
         public static final int action_mode_close_button=0x7f0a0020;
         public static final int action_settings=0x7f0a0059;
-        public static final int activityButtonUserOverview=0x7f0a004c;
+        public static final int activityButtonUserOverview=0x7f0a004d;
         public static final int activity_chooser_view_content=0x7f0a0021;
         public static final int always=0x7f0a0016;
         public static final int back_button_to_user_overview=0x7f0a0058;
@@ -1449,7 +1449,7 @@ containing a value of this type.
         public static final int search_plate=0x7f0a0039;
         public static final int search_src_text=0x7f0a003a;
         public static final int search_voice_btn=0x7f0a003e;
-        public static final int seekRed=0x7f0a004d;
+        public static final int seekRed=0x7f0a004c;
         public static final int shortcut=0x7f0a002a;
         public static final int showCustom=0x7f0a000f;
         public static final int showHome=0x7f0a0010;

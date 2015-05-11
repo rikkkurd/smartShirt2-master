@@ -88,12 +88,13 @@
     <string name="SelectActivityNotificationText">Geef je huidige activiteit aan</string>
     <string name="NoActivityDataYet">Geen data beschikbaar op dit moment, gebruik het shirt gedurende de dag en kom later op de dag terug om het overzicht te bekijken</string>
     <string name="Back">"Terug"</string>
-    <string name="title_activity_desk_info">Meer info Bureau</string>
+    <string name="title_activity_desk_info">Meer info bureau</string>
     <string name="info_activity_desk_info">Probeer recht te zitten en tegelijk de natuurlijke krommingen in uw rug te behouden. Zit met uw beide voeten gesteund op de grond (niet met benen over elkaar!). Een hoek van 90 graden in heup, knie, enkel is optimaal.  Uiteraard wil u af en toe uw houding wat veranderen, en dat is prima. Gebruik deze houdingsveranderingen als een pauze voor uw spieren, en let erop om niet langdurig met doorgezakte (gebogen) rug te zitten. "
        </string>
-    <string name="title_activity_body_posture_info">Lichaams houding info</string>
+    <string name="title_activity_body_posture_info">Meer info lichaams houding</string>
     <string name="info_activity_bodyPosture_info">Zorg ervoor dat uw rug zoveel mogelijk de natuurlijke kromming kan behouden. Pas de hoogte van de apparatuur, of van uzelf aan om dit mogelijk te maken. </string>
     <string name="title_activity_helping_patient_info">meer info begeleiding</string>
     <string name="infoHelpingPatient">Probeer uw rug zo recht mogelijk te houden en uw buik-en bekkenbodemspieren licht aan te spannen. Let hierbij wel op dat uw ademhaling normaal blijft. Hou de last zo dicht mogelijk bij uw lichaam. Vermijd steeds de combinatie van een buig- en draaibeweging in de rug.</string>
+    <string name="title_activity_bed_info">Meer info bed</string>
     <string name="infoTextBedSide">Zet eerst het bed op de juiste hoogte. Probeer uw lage rug zo recht mogelijk te houden (buig indien nodig in uw heupen). Probeer tijdens het vooroverbuigen uw buik- en bekkenbodemspieren lichtjes aan te spannen, let wel op dat u normaal blijft doorademen. Vermijd zoveel mogelijk om uw rug gelijktijdig te buigen en te draaien.</string>
 </resources>

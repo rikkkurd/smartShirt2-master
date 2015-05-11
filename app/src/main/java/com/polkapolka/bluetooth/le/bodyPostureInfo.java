@@ -67,11 +67,17 @@ public class bodyPostureInfo extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.back_button_to_user_overview:
+                Intent intent = new Intent(this, userOverview.class);
+                startActivityForResult(intent, 0);
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }

@@ -83,17 +83,31 @@
             android:textSize="18sp" />
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center|top"
+        android:orientation="horizontal">
      <TextView
         android:id="@+id/isSerial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/is_serial"
          android:textSize="18sp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center|top"
-        android:orientation="horizontal">
+
+    <SeekBar
+        android:id="@+id/seekRed"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:max="255"
+        />
+       </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|top"
+            android:orientation="vertical">
+
 
         <!--<Button-->
             <!--android:layout_width="150dp"-->
@@ -101,13 +115,7 @@
             <!--android:text="@string/button_initialize_app"/>-->
 
 
-        <Button
-            android:id="@+id/activityButtonUserOverview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/see_overview_button_text" />
-        />
+
 
         <!--<Button-->
         <!--android:layout_width="wrap_content"-->
@@ -115,12 +123,7 @@
         <!--android:text="@string/select_activity_button_text"-->
         <!--android:layout_weight="1"-->
         <!--android:id="@+id/activityButtonUserActivity"/>-->
-        <SeekBar
-            android:id="@+id/seekRed"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:max="255"
-            />
+
     </LinearLayout>
     <!--<LinearLayout android:orientation="horizontal"-->
     <!--android:layout_width="match_parent"-->
@@ -138,12 +141,19 @@
     <!--</LinearLayout>-->
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="330dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/illustration"/>
-    <ExpandableListView android:id="@+id/gatt_services_list"
+    <Button
+        android:id="@+id/activityButtonUserOverview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:background="@color/myPrimaryDarkColor"
+        android:text="@string/see_overview_button_text" />
+    />
+    <!--<ExpandableListView android:id="@+id/gatt_services_list"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"/>-->
 
 
 </LinearLayout>

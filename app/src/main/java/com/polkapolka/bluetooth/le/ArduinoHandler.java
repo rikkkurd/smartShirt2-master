@@ -120,7 +120,7 @@ public class ArduinoHandler {
         System.out.println(deltaPitch);
 
         // guard: check if the threshold is exceeded //|| (deltaPitch >= -BAD_PITCH_THRESHOLD && <= 0;))
-        if (deltaPitch > BAD_PITCH_THRESHOLD)  {
+        if (deltaPitch < BAD_PITCH_THRESHOLD)  {
             lastBadPitchTime = 0;
             pitchNotificationShown = false;
             return;

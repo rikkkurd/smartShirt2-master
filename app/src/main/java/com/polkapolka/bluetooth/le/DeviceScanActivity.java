@@ -49,7 +49,7 @@ public class DeviceScanActivity extends ListActivity {
     private boolean mScanning;
     private Handler mHandler;
     private boolean test;
-
+   private boolean connected = false;
     private static final int REQUEST_ENABLE_BT = 1;
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 10000;
@@ -59,7 +59,7 @@ public class DeviceScanActivity extends ListActivity {
         super.onCreate(savedInstanceState);
       //getActionBar().setTitle("smart shirt app");
         mHandler = new Handler();
-
+  //      connected = false;
         // Use this check to determine whether BLE is supported on the device.  Then you can
         // selectively disable BLE-related features.
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
@@ -126,10 +126,18 @@ public class DeviceScanActivity extends ListActivity {
             }
         }
 
-        // Initializes list view adapter.
-        mLeDeviceListAdapter = new LeDeviceListAdapter();
-        setListAdapter(mLeDeviceListAdapter);
-        scanLeDevice(true);
+       if(connected) {
+           Intent intent2 = new Intent(this, DeviceControlActivity.class);
+           startActivityForResult(intent2, 0);
+
+
+       }
+        else {
+           // Initializes list view adapter.
+           mLeDeviceListAdapter = new LeDeviceListAdapter();
+           setListAdapter(mLeDeviceListAdapter);
+           scanLeDevice(true);
+       }
     }
 
     @Override
@@ -147,6 +155,7 @@ public class DeviceScanActivity extends ListActivity {
         super.onPause();
         scanLeDevice(false);
         mLeDeviceListAdapter.clear();
+
     }
 
     @Override
@@ -161,6 +170,7 @@ public class DeviceScanActivity extends ListActivity {
             mScanning = false;
         }
         startActivity(intent);
+        connected = true;
     }
 
     private void scanLeDevice(final boolean enable) {

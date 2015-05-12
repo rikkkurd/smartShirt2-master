@@ -66,7 +66,7 @@ public class DeviceControlActivity extends ActionBarActivity
 
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
     public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
-    public static final int NOTIFICATION_DELAY = 5 * 60000;
+    public static final int NOTIFICATION_DELAY = 1 * 6000;
     public final static UUID HM_RX_TX =
             UUID.fromString(SampleGattAttributes.HM_RX_TX);
     private final static String TAG = DeviceControlActivity.class.getSimpleName();
@@ -74,7 +74,7 @@ public class DeviceControlActivity extends ActionBarActivity
     private final String LIST_UUID = "UUID";
     Button showNotificationBut;
     NotificationManager notificationManager;
-    int notifID = 33;
+    static int notifID = 33;
     private int[] RGBFrame = {0, 0, 0};
     private TextView isSerial;
     private TextView mConnectionState;
@@ -115,6 +115,8 @@ public class DeviceControlActivity extends ActionBarActivity
     // ACTION_DATA_AVAILABLE: received data from the device.  This can be a result of read
     //                        or notification operations.
     private final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
+
+
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
@@ -132,13 +134,13 @@ public class DeviceControlActivity extends ActionBarActivity
                 displayGattServices(mBluetoothLeService.getSupportedGattServices());
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
 
-                // call handler
-                try {
-                    arduinoHandler.handleArduinoBytes(intent);
-                } catch (Exception e) {
-                    System.out.println("Skipped incoming data, because of exception!");
-                    e.printStackTrace();
-                }
+                // call handler is now done in arduinoreceiver.java
+//                try {
+//                    arduinoHandler.handleArduinoBytes(intent);
+//                } catch (Exception e) {
+//                    System.out.println("Skipped incoming data, because of exception!");
+//                    e.printStackTrace();
+//                }
 
                 displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
             }
@@ -146,8 +148,8 @@ public class DeviceControlActivity extends ActionBarActivity
     };
     private BluetoothGattCharacteristic characteristicTX;
     private BluetoothGattCharacteristic characteristicRX;
-    private ArduinoHandler arduinoHandler;
-    private long lastNotificationTime = 0;
+//    private ArduinoHandler arduinoHandler;
+    private static long lastNotificationTime = 0;
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private Toolbar mToolbar;
 
@@ -178,8 +180,8 @@ public class DeviceControlActivity extends ActionBarActivity
 //        mNavigationDrawerFragment.setup(R.id.fragment_drawer, (DrawerLayout) findViewById(R.id.drawer), mToolbar);
 
 
-        //   showNotificationBut = (Button) findViewById(R.id.createNotification);
-        arduinoHandler = new ArduinoHandler(this);
+        //   showNotificationBut = (Button) findViewById(R.id.createNification);
+//        arduinoHandler = new ArduinoHandler(this);
         //    Button ActivityButtonUserActivity = (Button) findViewById(R.id.activityButtonUserActivity);
 //        ActivityButtonUserActivity.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -284,7 +286,7 @@ public class DeviceControlActivity extends ActionBarActivity
                 startActivityForResult(intent2, 0);
                 return true;
             case R.id.menu_select_notification:
-                showNotificationInMenu();
+                showNotificationInMenu(this);
                 return true;
             case R.id.infoTips:
                 Intent intent3 = new Intent(this, deskInfo.class);
@@ -384,7 +386,7 @@ public class DeviceControlActivity extends ActionBarActivity
 
 
     //shownotification in menu function
-    public void showNotificationInMenu() {
+    public static void showNotificationInMenu(Context context) {
 
         // variables
         long currentTime = System.currentTimeMillis();
@@ -397,16 +399,16 @@ public class DeviceControlActivity extends ActionBarActivity
         lastNotificationTime = currentTime;
 
         NotificationCompat.Builder notificationBuilder = new
-                NotificationCompat.Builder(this)
-                .setContentTitle(getString(R.string.NotifationTitle))
-                .setContentText(getString(R.string.NotificationSubtitle))
-                .setTicker(getString(R.string.BadPostureTicker))
+                NotificationCompat.Builder(context)
+                .setContentTitle(context.getString(R.string.NotifationTitle))
+                .setContentText(context.getString(R.string.NotificationSubtitle))
+                .setTicker(context.getString(R.string.BadPostureTicker))
                 .setSmallIcon(R.drawable.icon);
         // Define that we have the intention of opening MoreInfoNotification
-        Intent moreInfoIntent = new Intent(this, userActivity.class);
+        Intent moreInfoIntent = new Intent(context, userActivity.class);
 
         // Used to stack tasks across activites so we go to the proper place when back is clicked
-        TaskStackBuilder tStackBuilder = TaskStackBuilder.create(this);
+        TaskStackBuilder tStackBuilder = TaskStackBuilder.create(context);
 
         // Add all parents of this activity to the stack
         tStackBuilder.addParentStack(DeviceControlActivity.class);
@@ -427,8 +429,10 @@ public class DeviceControlActivity extends ActionBarActivity
         notificationBuilder.setContentIntent(pendingIntent);
 
         // Gets a NotificationManager which is used to notify the user of the background event
+
+        NotificationManager notificationManager;
         notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         // Post the notification
         notificationManager.notify(notifID, notificationBuilder.build());
@@ -437,7 +441,7 @@ public class DeviceControlActivity extends ActionBarActivity
     }
 
     //show notification button function
-    public void showNotification(View view) {
+    public  void showNotification(View view) {
         NotificationCompat.Builder notificationBuilder = new
                 NotificationCompat.Builder(this)
                 .setContentTitle(getString(R.string.NotifationTitle))

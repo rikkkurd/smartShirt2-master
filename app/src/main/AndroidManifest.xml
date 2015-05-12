@@ -90,6 +90,26 @@ limitations under the License.
             android:name=".bedInfo"
             android:label="@string/title_activity_bed_info" >
         </activity>
+
+
+        <receiver
+            android:name="com.polkapolka.bluetooth.le.ArduinoReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <!--<action android:name="com.example.bluetooth.le.ACTION_GATT_CONNECTED" />-->
+                <!--<action android:name="com.example.bluetooth.le.ACTION_GATT_DISCONNECTED" />-->
+                <!--<action android:name="com.example.bluetooth.le.ACTION_GATT_SERVICES_DISCOVERED" />-->
+                <action android:name="com.example.bluetooth.le.ACTION_DATA_AVAILABLE" />
+                <!--<action android:name="com.example.bluetooth.le.EXTRA_DATA" />-->
+
+
+            </intent-filter>
+
+            </receiver>
+
+
+
+
     </application>
 
 </manifest>

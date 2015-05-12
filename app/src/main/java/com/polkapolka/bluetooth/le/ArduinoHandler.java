@@ -1,5 +1,6 @@
 package com.polkapolka.bluetooth.le;
 
+import android.content.Context;
 import android.content.Intent;
 //import java.util.Arrays;
 
@@ -13,13 +14,12 @@ public class ArduinoHandler {
      */
     private final static int SENSOR_ONE_PACKET_ID = 0;
     private final static int SENSOR_TWO_PACKET_ID = 1;
-    private final static int BAD_PITCH_THRESHOLD = 50;
+    private final static int BAD_PITCH_THRESHOLD = 20;
     private final static int BAD_PITCH_TIME = 3000;
 
     /**
      * Object references
      */
-    private final DeviceControlActivity deviceControlActivity;
 
     /**
      * Pitch listener
@@ -36,14 +36,14 @@ public class ArduinoHandler {
     private int roll2 = 0;
     private int heading2 = 0;
     private int pitch2 = 0;
-
+    public Context context;
     /**
      * Constructor
      */
-    public ArduinoHandler(DeviceControlActivity deviceControlActivity) {
+    public ArduinoHandler() {
 
         // variables
-        this.deviceControlActivity = deviceControlActivity;
+
     }
 
     /**
@@ -112,11 +112,15 @@ public class ArduinoHandler {
     private void checkPitchPosture() {
 
         // variables
-        int deltaPitch = pitch1;
         //int deltaPitch = pitch1 - pitch2;
+        int deltaPitch = pitch1;
+      //  deltaPitch = (deltaPitch < 0) ? -deltaPitch : deltaPitch;
+        //int deltaPitch = pitch1 - pitch2;
+        System.out.print("deltaPitch");
+        System.out.println(deltaPitch);
 
-        // guard: check if the threshold is exceeded
-        if (deltaPitch <= BAD_PITCH_THRESHOLD) {
+        // guard: check if the threshold is exceeded //|| (deltaPitch >= -BAD_PITCH_THRESHOLD && <= 0;))
+        if (deltaPitch > BAD_PITCH_THRESHOLD)  {
             lastBadPitchTime = 0;
             pitchNotificationShown = false;
             return;
@@ -137,7 +141,7 @@ public class ArduinoHandler {
 
             // show notification
             System.out.println("Notification shown!");
-            deviceControlActivity.showNotificationInMenu();
+            DeviceControlActivity.showNotificationInMenu(context);
             pitchNotificationShown = true;
         }
     }

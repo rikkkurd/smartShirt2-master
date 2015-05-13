@@ -16,9 +16,9 @@
         android:layout_marginTop="16dp"
         android:text="@string/what_were_user_doing"
         android:textSize="25sp"
-        android:paddingBottom="16dp"
+        android:textAlignment="center"
+        android:textColor="@color/primary_dark_material_dark"/>
 
-        android:textAlignment="center" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

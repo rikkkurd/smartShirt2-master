@@ -66,7 +66,7 @@ public class userOverview extends ActionBarActivity {
         staticLabelsFormatter.setHorizontalLabels(new String[]{getString(R.string.Bed), getString(R.string.Desk), getString(R.string.Walking), getString(R.string.Patient), getString(R.string.Machine), getString(R.string.Other), ""});
         graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
         series.setSpacing(25);
-        series.setDrawValuesOnTop(true);
+        series.setDrawValuesOnTop(false);
         series.setValuesOnTopColor(Color.BLACK);
 graph.addSeries(series);
 

@@ -59,7 +59,9 @@ limitations under the License.
         </activity>
         <activity
             android:name=".DeviceControlActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
 
         <service
             android:name=".BluetoothLeService"
@@ -77,19 +79,27 @@ limitations under the License.
         </activity>
         <activity
             android:name=".deskInfo"
-            android:label="@string/title_activity_desk_info" >
+            android:label="@string/title_activity_desk_info"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
         </activity>
         <activity
             android:name=".bodyPostureInfo"
-            android:label="@string/title_activity_body_posture_info" >
+            android:label="@string/title_activity_body_posture_info"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
         </activity>
         <activity
             android:name=".helpingPatientInfo"
-            android:label="@string/title_activity_helping_patient_info" >
+            android:label="@string/title_activity_helping_patient_info"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
         </activity>
         <activity
             android:name=".bedInfo"
-            android:label="@string/title_activity_bed_info" >
+            android:label="@string/title_activity_bed_info"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
         </activity>
 
 

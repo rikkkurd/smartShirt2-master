@@ -336,7 +336,7 @@ public class DeviceControlActivity extends ActionBarActivity
 
             // If the service exists for HM 10 Serial, say so.
             if (SampleGattAttributes.lookup(uuid, unknownServiceString) == "HM 10 Serial") {
-                isSerial.setText("Yes, serial :-)");
+                isSerial.setText(getString(R.string.verbinding_herkend));
             } else {
                 isSerial.setText("No, serial :-(");
             }

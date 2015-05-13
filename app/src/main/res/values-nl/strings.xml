@@ -33,7 +33,7 @@
     <string name="menu_disconnect">Ontkoppel Smart shirt</string>
     <string name="menu_scan">Scan naar shirts</string>
     <string name="menu_stop">Stop</string>
-    <string name="is_serial">Seriele data:</string>
+    <string name="is_serial">klik om meten te starten -></string>
     <string-array name="roygbiv">
         <item>Red</item>
         <item>Green</item>
@@ -98,4 +98,6 @@
     <string name="title_activity_bed_info">Meer info bed</string>
     <string name="infoTextBedSide">Zet eerst het bed op de juiste hoogte. Probeer uw lage rug zo recht mogelijk te houden (buig indien nodig in uw heupen). Probeer tijdens het vooroverbuigen uw buik- en bekkenbodem spieren lichtjes aan te spannen, let wel op dat u normaal blijft doorademen. Vermijd zoveel mogelijk om uw rug gelijktijdig te buigen en te draaien.</string>
     <string name="explaination_what_user_doing">Klik op het item in de lijst om deze te selecteren</string>
+    <string name="verbinding_herkend">klik om het meten te starten -></string>
+    <string name="overview_large_button_bottom">Bekijk het overzicht van vandaag</string>
 </resources>

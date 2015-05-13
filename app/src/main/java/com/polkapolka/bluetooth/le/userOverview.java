@@ -45,6 +45,13 @@ public class userOverview extends ActionBarActivity {
                 new DataPoint(5, activityCounterMachine),
                 new DataPoint(6, activityCounterOther),
                 new DataPoint(6.8, 0)
+//                new DataPoint(1, 1),
+//                new DataPoint(2, 2),
+//                new DataPoint(3, 3),
+//                new DataPoint(4, 1),
+//                new DataPoint(5, 1),
+//                new DataPoint(6, 2),
+//                new DataPoint(6.8, 0)
 
         });
 
@@ -56,12 +63,22 @@ public class userOverview extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+
+
         series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
             @Override
             public int get(DataPoint data) {
-                return Color.rgb((int) data.getX() * 255 / 6, (int) Math.abs(data.getX() * 255 / 6), 100);
+                return Color.rgb((((int) data.getX() * 255 / 6)), ((int) Math.abs(data.getX() * 1)), 100);
             }
         });
+
+//colors of code below are okay
+//        series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
+//            @Override
+//            public int get(DataPoint data) {
+//                return Color.rgb((int) data.getX() * 255 / 6, (int) Math.abs(data.getX() * 255 / 4), 100);
+//            }
+//        });
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
         staticLabelsFormatter.setHorizontalLabels(new String[]{getString(R.string.Bed), getString(R.string.Desk), getString(R.string.Walking), getString(R.string.Patient), getString(R.string.Machine), getString(R.string.Other), ""});
         graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);

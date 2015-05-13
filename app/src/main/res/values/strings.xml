@@ -95,4 +95,6 @@
     <string name="title_activity_bed_info">More info bed</string>
     <string name="infoTextBedSide">Zet eerst het bed op de juiste hoogte. Probeer uw lage rug zo recht mogelijk te houden (buig indien nodig in uw heupen). Probeer tijdens het vooroverbuigen uw buik- en bekkenbodemspieren lichtjes aan te spannen, let wel op dat u normaal blijft doorademen. Vermijd zoveel mogelijk om uw rug gelijktijdig te buigen en te draaien.</string>
     <string name="explaination_what_user_doing">click on a item in the list to select the activity</string>
+    <string name="verbinding_herkend">Yes, serial :-)</string>
+    <string name="overview_large_button_bottom">View overview of today</string>
 </resources>

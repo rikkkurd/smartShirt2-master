@@ -8,7 +8,7 @@ import android.content.Intent;
  * Created by s104419 on 5/12/2015.
  */
 public class ArduinoReceiver extends BroadcastReceiver {
-    private static ArduinoHandler arduinoHandler = new ArduinoHandler();
+    public final static ArduinoHandler arduinoHandler = new ArduinoHandler();
 
     @Override
     public void onReceive(Context context, Intent intent) {

@@ -100,4 +100,7 @@
     <string name="explaination_what_user_doing">Klik op het item in de lijst om deze te selecteren</string>
     <string name="verbinding_herkend">klik om het meten te starten -></string>
     <string name="overview_large_button_bottom">Bekijk het overzicht van vandaag</string>
+    <string name="calibrate_Now">Kalibreer nu</string>
+    <string name="StopCalibration">Kalibreren stoppen</string>
+    <string name="Calibration_button_text">Kalibreer nu</string>
 </resources>

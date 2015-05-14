@@ -106,6 +106,7 @@
         android:layout_height="wrap_content"
         android:max="255"
         />
+
        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -113,7 +114,14 @@
             android:layout_gravity="center|top"
             android:orientation="vertical">
 
-
+            <Button
+                android:id="@+id/calibrationButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:background="@color/myPrimaryDarkColor"
+                android:text="@string/Calibration_button_text" />
+            />
         <!--<Button-->
             <!--android:layout_width="150dp"-->
             <!--android:layout_height="wrap_content"-->

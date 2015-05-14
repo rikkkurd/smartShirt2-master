@@ -77,6 +77,7 @@ public class DeviceControlActivity extends ActionBarActivity
     static int notifID = 33;
     private int[] RGBFrame = {0, 0, 0};
     private TextView isSerial;
+    private TextView Calibration_button_text;
     private TextView mConnectionState;
     private TextView mDataField;
     private SeekBar mRed, mGreen, mBlue;
@@ -84,6 +85,7 @@ public class DeviceControlActivity extends ActionBarActivity
     private String mDeviceAddress;
     //  private ExpandableListView mGattServicesList;
     private BluetoothLeService mBluetoothLeService;
+
     // Code to manage Service lifecycle.
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
         /**
@@ -201,7 +203,29 @@ public class DeviceControlActivity extends ActionBarActivity
 
 
         );
+        final Button calibrationButton = (Button) findViewById(R.id.calibrationButton);
+               calibrationButton.setOnClickListener(new View.OnClickListener() {
+                                                          @Override
+                                                          public void onClick(View view) {
 
+
+                                                              // set boolean on true or false toggle
+                                                              if (ArduinoReceiver.arduinoHandler.isCalibrating == false) {
+                                                                  ArduinoReceiver.arduinoHandler.isCalibrating = true;
+                                                                  //change text of button depending on toggle state
+                                                                  Calibration_button_text.setText(getString(R.string.StopCalibration));
+                                                                  System.out.println(ArduinoReceiver.arduinoHandler.isCalibrating);
+                                                              }
+                                                              else {
+                                                                  ArduinoReceiver.arduinoHandler.isCalibrating = false;
+                                                                  //change text of button depending on toggle state
+                                                                  Calibration_button_text.setText(getString(R.string.calibrate_Now));
+                                                                  System.out.println(ArduinoReceiver.arduinoHandler.isCalibrating);
+
+                                                              }
+                                                          }
+                                                      }
+        );
 
         final Intent intent = getIntent();
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
@@ -212,6 +236,8 @@ public class DeviceControlActivity extends ActionBarActivity
         mConnectionState = (TextView) findViewById(R.id.connection_state);
         // is serial present?
         isSerial = (TextView) findViewById(R.id.isSerial);
+        Calibration_button_text = (TextView) findViewById(R.id.calibrationButton);
+
 
         mDataField = (TextView) findViewById(R.id.data_value);
         mRed = (SeekBar) findViewById(R.id.seekRed);
